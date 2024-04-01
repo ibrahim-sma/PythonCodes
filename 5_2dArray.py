@@ -9,11 +9,13 @@ the program: 3,5 Then, the output of the program should be: [[0, 0, 0, 0, 0],
 def dd_array(x,y):
 
 	fin_list = []
-	for i in range(x+1):
+	for i in range(x):
 		ini_list = []
-		for j in range(y+1):
+		for j in range(y):
 			ini_list.append(i*j)
 		fin_list.append(ini_list)
 	return fin_list
 
 print(dd_array(4,5))
+
+# Output: [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8], [0, 3, 6, 9, 12]]

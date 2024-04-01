@@ -16,3 +16,5 @@ def div_by7_not5():
 div_list = div_by7_not5()
 div_nos = ", ".join(div_list)
 print(div_nos)
+
+# Sample Output: 2002, 2009, 2016, 2023, 2037,..., 3171, 3178, 3192, 3199

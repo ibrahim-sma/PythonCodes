@@ -23,3 +23,5 @@ def square_root(inp_list):
 
 inp_list = [100,150,180]
 print(square_root(inp_list))
+
+# Output: [18, 22, 24]
