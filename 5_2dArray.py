@@ -1,5 +1,9 @@
 """
+<<<<<<< HEAD
 5) Write a program which takes 2 digits, X,Y as input and generates a 2-dimensional array. 
+=======
+7) Write a program which takes 2 digits, X,Y as input and generates a 2-dimensional array. 
+>>>>>>> 026b5d111632615c3afdf3da663e99480c91f47b
 The element value in the i-th row and j-th column of the array should be i*j. 
 Note: i=0,1.., X-1; j=0,1,¡­Y-1. Example Suppose the following inputs are given to 
 the program: 3,5 Then, the output of the program should be: [[0, 0, 0, 0, 0], 
@@ -9,11 +13,13 @@ the program: 3,5 Then, the output of the program should be: [[0, 0, 0, 0, 0],
 def dd_array(x,y):
 
 	fin_list = []
-	for i in range(x+1):
+	for i in range(x):
 		ini_list = []
-		for j in range(y+1):
+		for j in range(y):
 			ini_list.append(i*j)
 		fin_list.append(ini_list)
 	return fin_list
 
 print(dd_array(4,5))
+
+# Output: [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8], [0, 3, 6, 9, 12]]

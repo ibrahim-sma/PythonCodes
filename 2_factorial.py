@@ -14,3 +14,5 @@ def recursive_fn(inp_no):
 		return 1
 
 print(recursive_fn(12))
+
+# Output: 479001600
