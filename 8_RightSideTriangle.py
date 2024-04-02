@@ -7,7 +7,11 @@ i) Decreasing space & Increasing Star
   * * * * 
 * * * * *
 ii) Increasing space & Decreasing Star
-
+* * * * * 
+  * * * * 
+    * * * 
+      * * 
+        * 
 """
 
 print("i) Decreasing space & Increasing Star")
