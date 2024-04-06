@@ -14,14 +14,10 @@ max_str = ""
 max_str_val = 0
 
 for i in test_str:
-    if curr_str == "":
-        curr_str = i
-        curr_str_count += 1
-        continue
-
     if i != curr_str:
         if curr_str not in str_dict or str_dict[curr_str] < curr_str_count:
-            str_dict[curr_str] = curr_str_count
+            if curr_str != "":
+                str_dict[curr_str] = curr_str_count
         
         if curr_str_count > max_str_val:
             max_str_val = curr_str_count
@@ -34,3 +30,27 @@ for i in test_str:
 
 print(str_dict)
 print(max_str, max_str_val)
+
+
+# LeetCode problem
+
+# inp_str = "pwwkew"
+
+# curr_str = ""
+# curr_str_len = 0
+
+# max_str = ""
+# max_str_len = 0
+
+# for i in inp_str:
+#     if i not in curr_str:
+#         curr_str += i
+#         curr_str_len += 1
+#     else:
+#         if curr_str_len >= max_str_len:
+#             max_str = curr_str
+#             max_str_len = curr_str_len
+#         curr_str = i
+#         curr_str_len = 1
+
+# print(max_str, max_str_len)

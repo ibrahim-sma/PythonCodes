@@ -1,14 +1,11 @@
-test_str1 = "geeksforgeeks"
-test_str2 = "gfksm"
- 
-# printing original string
-print("The original string is : " + test_str1)
- 
-# Test if string is subset of another
-# Using all()
-res = all(ele in test_str1 for ele in test_str2)
-res2 = [ele  for ele in test_str2]
-print(res2)
- 
-# printing result
-print("Does string contains all the characters of other list? : " + str(res))
+import re      
+# The string of text where regular expression will be searched.   
+string_1 = """Here are some student's ID, student A: 676  
+            student B: 564  
+            student C: 567  
+            student D: 112  
+            student E: 234"""      
+# Setting the regular expression for finding digits in the string.   
+regex_1 = "\w+\s\w\:\s\d+"                  
+match_1 = re.findall(regex_1, string_1)   
+print(match_1)
