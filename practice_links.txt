@@ -1,0 +1,6 @@
+Archived links:
+"http://www.automationpractice.pl/index.php"
+
+Active Links:
+https://testautomationpractice.blogspot.com/p/playwrightpractice.html
+https://opensource-demo.orangehrmlive.com/web/index.php/auth/login

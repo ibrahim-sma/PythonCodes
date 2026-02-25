@@ -1,0 +1,33 @@
+Day1 Notes: (Installation & Running playwright)
+
+    -> Inside a virtual env
+        pip install pytest-playwright 
+        playwright install
+
+    -> Supported browsers:
+        chromium(edge/google chrome), firefox, webkit(macOs)
+
+    -> Different execution techniques
+        pytest first_test.py -s -v (by default headless mode & browser is chromium)
+        pytest first_test.py -s -v --headed (to run the test with browser launched)
+        pytest first_test.py -s -v --browser firefox (to specifically pick a browser)
+        pytest first_test.py -s -v --browser chromium --browser chromium (to run using multiple browsers one at a time)
+        pytest first_test.py::test_fmtc_home_page_url -s -v (command to run a specific test)
+
+    -> Running Tests in Parallel
+        pytest first_test.py -s -v --headed --browser chromium -n=2 
+        pytest first_test.py -s -v --headed --browser chromium -n 2
+        pytest first_test.py -s -v --headed --browser chromium --numprocesses=2
+        pytest first_test.py -s -v --headed --browser chromium --numprocesses 2
+
+Day2 Notes: (Playwright built-in locators)
+    -> Types of built-in locators
+        page.get_by_role()
+        page.get_by_text()
+        page.get_by_label()
+        page.get_by_test_id()
+        page.get_by_alt_text()
+        page.get_by_placeholder()
+        page.get_by_title()
+
+    -> 
