@@ -1,0 +1,247 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ExpenseTracker API",
+    "description": "API to manage Income and Expense transactions for Fortune Media Company",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/api/v1",
+      "description": "Local Development Server"
+    }
+  ],
+  "paths": {
+    "/expenses": {
+      "post": {
+        "summary": "Create a transaction",
+        "tags": ["Expenses"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpenseCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transaction created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpenseCreateResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List all transactions",
+        "tags": ["Expenses"],
+        "parameters": [
+          { "name": "expense_type", "in": "query", "schema": { "type": "string" } },
+          { "name": "transaction_mode", "in": "query", "schema": { "type": "string" } },
+          { "name": "category", "in": "query", "schema": { "type": "string" } },
+          { "name": "from_date", "in": "query", "schema": { "type": "string", "format": "date-time" } },
+          { "name": "to_date", "in": "query", "schema": { "type": "string", "format": "date-time" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpenseListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/expenses/{id}": {
+      "get": {
+        "summary": "Get transaction by ID",
+        "tags": ["Expenses"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpenseResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update transaction by ID",
+        "tags": ["Expenses"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpenseUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete transaction by ID",
+        "tags": ["Expenses"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction deleted successfully"
+          }
+        }
+      }
+    },
+    "/expenses/summary": {
+      "get": {
+        "summary": "Transaction summary",
+        "tags": ["Reports"],
+        "parameters": [
+          { "name": "from_date", "in": "query", "schema": { "type": "string", "format": "date-time" } },
+          { "name": "to_date", "in": "query", "schema": { "type": "string", "format": "date-time" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Summary report",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpenseSummary"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ExpenseCreate": {
+        "type": "object",
+        "required": ["expense_type", "description", "transaction_type", "transaction_mode", "account"],
+        "properties": {
+          "date": { "type": "string", "format": "date-time", "example": "2026-01-15T14:03:03+05:30" },
+          "expense_type": { "type": "string", "enum": ["Income", "Expense"] },
+          "description": { "type": "string" },
+          "transaction_type": { "type": "string", "enum": ["Credit", "Debit"] },
+          "transaction_mode": { "type": "string", "enum": ["UPI", "NEFT", "IMPS", "CASH"] },
+          "category": { "type": "string" },
+          "subcategory": { "type": "string" },
+          "account": { "type": "string" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "comments": { "type": "string" }
+        }
+      },
+      "ExpenseUpdate": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "category": { "type": "string" },
+          "subcategory": { "type": "string" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "comments": { "type": "string" }
+        }
+      },
+      "ExpenseResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "expense_type": { "type": "string" },
+          "description": { "type": "string" },
+          "transaction_type": { "type": "string" },
+          "transaction_mode": { "type": "string" },
+          "category": { "type": "string" },
+          "subcategory": { "type": "string" },
+          "account": { "type": "string" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "created_at": { "type": "string", "format": "date-time" },
+          "updated_at": { "type": "string", "format": "date-time" }
+        }
+      },
+      "ExpenseCreateResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "message": { "type": "string" }
+        }
+      },
+      "ExpenseListResponse": {
+        "type": "object",
+        "properties": {
+          "count": { "type": "integer" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ExpenseResponse" }
+          }
+        }
+      },
+      "ExpenseSummary": {
+        "type": "object",
+        "properties": {
+          "total_income": { "type": "number" },
+          "total_expense": { "type": "number" },
+          "net_balance": { "type": "number" },
+          "by_category": {
+            "type": "object",
+            "additionalProperties": { "type": "number" }
+          },
+          "by_transaction_mode": {
+            "type": "object",
+            "additionalProperties": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

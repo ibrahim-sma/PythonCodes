@@ -1,0 +1,44 @@
+~~~~ GitHub + PostgreSQL Dump  ~~~
+1️⃣ Export PostgreSQL Database (VERY IMPORTANT)
+
+method1:
+pg_dump -U postgres -h localhost -p 5432 \
+  -F c -b -v \
+  -f fastapi_db.dump your_db_name
+
+or 
+method2:
+pg_dump -U postgres your_db_name > fastapi_db.sql
+
+Note: include -W after localhost if error is thrown. Also, pg_dump by default may throw error
+and the same can be found in C:/Program Files/PostgreSQL/18/bin folder. Execute commands from there
+
+2️⃣ Add Dump File to Project
+fastapi-project/
+├── app/
+│   ├── main.py
+│   ├── routers/
+│   ├── models/
+│   ├── schemas/
+│   └── db/
+│       └── session.py
+├── db/
+│   └── fastapi_db.sql   👈 HERE
+├── requirements.txt
+├── .env.example
+├── README.md
+└── alembic/ (if used)
+
+3️⃣ Environment Variables (Do This Cleanly)
+
+Create .env.example:
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=fastapi_db
+DB_USER=postgres
+DB_PASSWORD=postgres
+
+4️⃣ Document Restore Steps (README.md) - refer README.md file of https://github.com/ibrahim-sma/fmtc-temp.git
+
+5️⃣ Verify Before Sharing (Critical Step) & Checkin all the steps to github repo
