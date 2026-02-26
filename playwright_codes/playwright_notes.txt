@@ -30,4 +30,28 @@ Day2 Notes: (Playwright built-in locators)
         page.get_by_placeholder()
         page.get_by_title()
 
-    -> 
+Day3 Notes: (CSS Locators)
+    -> css with tags:
+        tags with id: input#
+        tags with class:
+        tags with attributes:
+        tags with class attributes:
+
+    -> install selectors hub browser plugin
+
+    -> types of css:
+        relative css selector:
+        absolute css selector:
+        full css selector(combination):
+
+    -> Multi-elements located:
+        first-child:
+        last-child:
+        nth-child:
+        multi class attributes: p[name="main"][class="multi"]
+        regex type:
+             p[class^="ma"] # startswith matching a class name as main
+             p[class$="nd"] # endswith matching a class name as end
+             p[class*="ai"] # contains matching a class name as main
+
+    -> Sibling elements
